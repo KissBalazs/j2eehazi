@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="jeehazi:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="jeehazi-0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="jeehazi:war exploded" />
+    </root>
+  </artifact>
+</component>
