@@ -2,27 +2,15 @@
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
-    <!--<persistence-unit name="JEE_PU" transaction-type="JTA">-->
-        <!--<jta-data-source>java:comp/DefaultDataSource</jta-data-source>-->
-        <!--<exclude-unlisted-classes>false</exclude-unlisted-classes>-->
-        <!--<properties>-->
-            <!--<property name="eclipselink.deploy-on-startup" value="true"/>-->
-            <!--<property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>-->
-            <!--<property name="eclipselink.ddl-generation.output-mode" value="database"/>-->
-            <!--<property name="eclipselink.logging.logger" value="DefaultLogger"/>-->
-            <!--<property name="eclipselink.logging.level" value="FINE"/>-->
-            <!--<property name="eclipselink.logging.level.sql" value="FINE"/>-->
-        <!--</properties>-->
-    <!--</persistence-unit>-->
-
-
-    <persistence-unit name="ULYKONYV" transaction-type="JTA">
-        <!--<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> TODO: ez kell?-->
+    <persistence-unit name="jee_PU" transaction-type="JTA">
 
         <jta-data-source>jdbc/jeeDS</jta-data-source>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
 
         <properties>
+            <property name="eclipselink.deploy-on-startup" value="true"/> <!-- induláskor már elindul a db inicializálás -->
+            <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/> <!-- és legenerálja a táblákat bibi -->
+            <property name="eclipselink.ddl-generation.output-mode" value="database"/> <!-- kimenet: a db, oda generálja a táblákat -->
             <property name="eclipselink.logging.logger" value="DefaultLogger"/>
             <property name="eclipselink.logging.level" value="FINE"/>
             <property name="eclipselink.logging.level.sql" value="FINE"/>

@@ -2,15 +2,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <modules>
-        <module>frontend</module>
-    </modules>
+
     <groupId>hu.forest</groupId>
     <artifactId>jeehazi</artifactId>
     <version>0.1-SNAPSHOT</version>
-    <modules>
-        <module>frontend</module>
-    </modules>
+
     <packaging>pom</packaging>
 
     <name>jeehazi</name>
@@ -21,28 +17,36 @@
     </properties>
 
     <dependencies>
+        <!--JavaEE api-->
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>6.0</version>
             <scope>provided</scope>
         </dependency>
+
+        <!--Logger -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.10</version>
         </dependency>
+
+        <!--Boilerplate kódok ellen -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.16.6</version>
         </dependency>
+
+        <!--JavaFaces-->
         <dependency>
             <groupId>javax.faces</groupId>
             <artifactId>jsf-api</artifactId>
             <version>2.0</version>
             <scope>provided</scope>
         </dependency>
+
     </dependencies>
 
     <build>

@@ -1,30 +1,44 @@
 package hu.forest.jeehazi.model;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Version;
 import java.io.Serializable;
 import java.util.UUID;
 
 /**
  * @author Kiss Balázs <balazs.kiss@webvalto.hu>
  */
-
-@Data
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode
 @MappedSuperclass
-public class BaseEntity implements Serializable, IBaseEntity {
+public abstract class BaseEntity implements Serializable {
 
     @Id
-    @Column(name = "id", length = 36, nullable = false)
-    private String id = UUID.randomUUID().toString();
+//    @Getter
+//    @Setter
+    @Column(name = "id")
+    private String id;
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return this.id;
+    }
 
     @Version
-    @Column(name = "version", nullable = false)
+    @Getter
+    @Setter
     private Long version;
 
-}
+    public BaseEntity() {
+        id = UUID.randomUUID().toString();
+    }
 
+}
