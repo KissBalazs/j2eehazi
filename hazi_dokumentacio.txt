@@ -1,0 +1,72 @@
+mvn archetype:generate -DgroupId=hu.forest -DartifactId=jeehazi -Dversion=0.1-SNAPSHOT -Dpackage=hu.forest.jeehazi -DarchetypeGroupId=org.codehaus.mojo.archetypes -DarchetypeArtifactId=webapp-javaee6 -DarchetypeVersion=1.5 -DinteractiveMode=false
+
+- telepítettem egy glassfisht- weblogic egyenlőre kuka
+
+- beans.xml fájl
+
+- használok lombokot a getterek, setterekre
+
+csináltam temp felhasnálót meg temp szervletet, de eznem a végleges még... 
+
+glassfish web profile... feltelepítettem
+- elindítottam asadmin start-domain --debug
+- felkonfigoltam egy deploy-os idea profilt (glassfish server)
+- felkonfigoltam egy debugolós idea profilt (remote)
+
+
+https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-usagenotes-glassfish-config.html
+
+persze http://stackoverflow.com/questions/33048435/glassfish-admin-console-throws-java-lang-illegalstateexception-when-creating-jdb 
+
+mysql heggesztés:
+show databases | 
+- db neve: jeehazi
+- user hozzá: jee - jee 
+db müxik, összekötöttem a DB-vel.
+
+űegy kis heggesztés https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-usagenotes-glassfish-config.html
+
+asadmin create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname com.mysql.jdbc.jdbc2.optional.MysqlDataSource --property user=jee:password=jee:DatabaseName=jeehazi:ServerName=localhost:port=3306 PM-Pool
+
+./asadmin create-jdbc-resource --connectionpoolid PM-Pool jdbc/jeeDS
+
+
+
+
+    
+és megjelent, ping succesfull gecccc
+
+cseréljük le a JSP-t
+
+http://localhost:8080/jeehazi-0.1-SNAPSHOT/index.xhtml
+második commit itt
+
+persistence xml beillesztése
+
+datasoruce: java:comp/DefaultDataSource beállítottam a defaultot rá 
+
+
+http://www.zerotohero.hu/multi-module-project/
+
+harmadik commit ez előtt
+
+maven es újraindítás
+
+eljutottam a tutorialban az implementálásáig a táblázatnak de nem műödik 
+http://stackoverflow.com/questions/20430780/cannot-get-slf4j-working-with-glassfish-4
+
+http://stackoverflow.com/questions/30128395/identifying-and-solving-javax-el-propertynotfoundexception-target-unreachable
+
+
+próbálkoztam primefacessel, nem sikerült még https://www.mkyong.com/jsf2/primefaces/primefaces-hello-world-example/ 
+
+jóóó sok kódolás, majd dokumentáld le.
+
+
+http://docs.oracle.com/javaee/6/tutorial/doc/bnbxj.html
+
+http://blog.eisele.net/2013/01/jdbc-realm-glassfish312-primefaces342.html
+innnen folyt.
+
+
+
