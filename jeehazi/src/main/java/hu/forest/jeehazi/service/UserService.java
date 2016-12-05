@@ -2,6 +2,7 @@ package hu.forest.jeehazi.service;
 
 import hu.forest.jeehazi.dao.BaseDao;
 import hu.forest.jeehazi.model.Car;
+import hu.forest.jeehazi.model.Rent;
 import hu.forest.jeehazi.model.User;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -27,7 +28,7 @@ public class UserService {
         userToSave.setName(name);
         userToSave.setPasswordHash(password);// todo: password...
         userToSave.setEmail(email);
-        userToSave.setCars(new ArrayList<Car>());
+        userToSave.setRents(new ArrayList<Rent>());
         baseDao.save(userToSave);
     }
 

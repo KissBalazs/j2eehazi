@@ -5,6 +5,7 @@ import java.util.List;
 
 import hu.forest.jeehazi.dao.BaseDao;
 import hu.forest.jeehazi.model.Car;
+import hu.forest.jeehazi.model.Rent;
 import hu.forest.jeehazi.model.User;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -29,7 +30,7 @@ public class CarService {
         carToSave.setColor(color);
         carToSave.setEngineCapacity(engineCapacity);
         carToSave.setYearOfBuild(yearOfBuild);
-        carToSave.setRenters(new ArrayList<User>());
+        carToSave.setRents(new ArrayList<Rent>());
         baseDao.save(carToSave);    }
 
     public void deleteCar(Car carToDelete){

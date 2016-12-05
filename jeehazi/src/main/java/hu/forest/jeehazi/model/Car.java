@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +18,11 @@ import java.util.List;
 @Entity
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class Car extends BaseEntity{
+public class Car extends BaseEntity {
+
+    public Car() {
+        this.rents = new ArrayList<Rent>();
+    }
 
     public static final String FIND_ALL_CARS = "car.findAll";
 
@@ -37,13 +42,11 @@ public class Car extends BaseEntity{
     @Temporal(TemporalType.DATE)
     private Date yearOfBuild;
 
-    @ManyToMany(mappedBy = "cars")
-    private List<User> renters;
+    @OneToMany(mappedBy = "car")
+    private List<Rent> rents;
 
-
-    //Vagy:
-//    @OneToMany(mappedBy="car")
-//    private List<Rent> rents;
-
+    public String getPresentationName() {
+        return brand + ":" + type;
+    }
 
 }

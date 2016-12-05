@@ -1,24 +1,39 @@
 package hu.forest.jeehazi.model;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import javax.persistence.*;
+import java.util.Date;
+import java.util.StringJoiner;
 
 /**
  * @author Kiss Balázs <balazs.kiss@webvalto.hu>
  */
-
+@NamedQueries(
+        @NamedQuery(name = Rent.NQ_FIND_ALL_RENTS, query = "select r from Rent r")
+)
 @Entity
-public class Rent extends BaseEntity{
+@Data
+@EqualsAndHashCode(callSuper = false)
+public class Rent extends BaseEntity {
 
-    @ManyToOne
-    @JoinColumn(name="id")
+    public static final String NQ_FIND_ALL_RENTS = "rent.findAll";
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="car_id")
     private Car car;
 
-    @ManyToOne
-    @JoinColumn(name="id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User user;
+
+    @Basic
+    @Temporal(TemporalType.DATE)
+    private Date dateOfRent;
+
+    @Basic
+    private int price;
 
 
 }

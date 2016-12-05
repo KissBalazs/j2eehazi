@@ -2,8 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/jsf/html ">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
 <h:head>
 
 </h:head>
@@ -45,6 +47,34 @@
                     <p:commandButton
                             value="Mentés"
                             actionListener="#{carService.addCar(brand.value, type.value, color.value, engineCapacity.value, null)}"
+                            update="containerGrid"
+                    />
+                </p:panel>
+            </h:form>
+            <h:form>
+                <p:panel id="addrent" header="Új kölcsönzés">
+                    <p:panelGrid columnClasses="2">
+                        <p:outputLabel for="selectUser" value="Felhasználó:"/>
+                        <p:selectOneMenu id="selectUser" binding="#{user}" converter="#{userConverter}">
+                            <f:selectItems value="#{userService.users}"
+                                           var="userVar"
+                                           itemLabel="#{userVar.name}"
+                                           itemValue="#{userVar}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="selectCar" value="Autó:"/>
+                        <p:selectOneMenu id="selectCar" binding="#{car}" converter="#{carConverter}">
+                            <f:selectItems value="#{carService.cars}"
+                                           var="carVar"
+                                           itemLabel="#{carVar.getPresentationName()}"
+                                           itemValue="#{carVar}"/>
+                        </p:selectOneMenu>
+                        <h:outputLabel for="priceField" value="Ár:"/>
+                        <h:inputText id="priceField" binding="#{price}"/>
+                    </p:panelGrid>
+                    <p:commandButton
+                            value="Mentés"
+                            actionListener="#{rentService.addRent(user.value,car.value,price.value,null)}"
                             update="containerGrid"
                     />
                 </p:panel>
@@ -98,6 +128,38 @@
                         <p:commandButton icon="ui-icon-trash"
                                          title="Delete"
                                          actionListener="#{carService.deleteCar(car)}"
+                                         ajax="false"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+            <h:form id="rentsTable">
+                <p:dataTable var="rent" value="#{rentService.rents}">
+                    <f:facet name="header">
+                        Kölcsönzések
+                    </f:facet>
+                    <p:column headerText="ID">
+                        <h:outputText value="#{rent.id}"/>
+                    </p:column>
+                    <p:column headerText="carBrandID">
+                        <h:outputText value="#{rent.car.brand}"/>
+                    </p:column>
+                    <p:column headerText="carType">
+                        <h:outputText value="#{rent.car.type}"/>
+                    </p:column>
+                    <p:column headerText="userType">
+                        <h:outputText value="#{rent.user.name}"/>
+                    </p:column>
+                    <p:column headerText="price">
+                        <h:outputText value="#{rent.price}"/>
+                    </p:column>
+                    <p:column headerText="date">
+                        <h:outputText value="#{rent.dateOfRent}"/>
+                    </p:column>
+
+                    <p:column headerText="Törlés">
+                        <p:commandButton icon="ui-icon-trash"
+                                         title="Delete"
+                                         actionListener="#{rentService.deleteRent(rent)}"
                                          ajax="false"/>
                     </p:column>
                 </p:dataTable>
