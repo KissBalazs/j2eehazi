@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/jsf/html ">
+<h:head>
+
+</h:head>
+
+<h:body>
+
+    <p:panel id="containerGrid">
+        <p:panel id="newEntityCreationPanel" header="Objektumok hozzáadása">
+            <h:form>
+                <p:panel id="addUser" header="User felvétele">
+                    <p:panelGrid columnClasses="2">
+                        <h:outputLabel for="userName" value="Név:"/>
+                        <h:inputText id="userName" binding="#{userName}"/>
+                        <h:outputLabel for="password" value="Jelszó:"/>
+                        <h:inputSecret id="password" binding="#{password}"/>
+                        <h:outputLabel for="email" value="Email:"/>
+                        <h:inputText id="email" binding="#{email}"/>
+                    </p:panelGrid>
+                    <p:commandButton
+                            value="Mentés"
+                            actionListener="#{userService.addUser(userName.value, password.value, email.value)}"
+                            update="containerGrid"
+                    />
+                </p:panel>
+            </h:form>
+            <h:form>
+                <p:panel id="addCar" header="Autó felvétele">
+                    <p:panelGrid columnClasses="2">
+                        <h:outputLabel for="brandField" value="Gyártó:"/>
+                        <h:inputText id="brandField" binding="#{brand}"/>
+                        <h:outputLabel for="typeField" value="Típus:"/>
+                        <h:inputText id="typeField" binding="#{type}"/>
+                        <h:outputLabel for="colorField" value="szín:"/>
+                        <h:inputText id="colorField" binding="#{color}"/>
+                        <h:outputLabel for="engineCapacityField" value="Motor térfogat:"/>
+                        <h:inputText id="engineCapacityField" binding="#{engineCapacity}"/>
+                        <!-- todo: datefield-->
+                    </p:panelGrid>
+                    <p:commandButton
+                            value="Mentés"
+                            actionListener="#{carService.addCar(brand.value, type.value, color.value, engineCapacity.value, null)}"
+                            update="containerGrid"
+                    />
+                </p:panel>
+            </h:form>
+        </p:panel>
+
+        <p:panel id="entityListingPanel" header="Adatbázis:">
+            <h:form id="userTableForm">
+                <p:dataTable var="user" value="#{userService.users}">
+                    <f:facet name="header">
+                        Felhasználók:
+                    </f:facet>
+                    <p:column headerText="ID">
+                        <h:outputText value="#{user.id}"/>
+                    </p:column>
+                    <p:column headerText="userName">
+                        <h:outputText value="#{user.name}"/>
+                    </p:column>
+                    <p:column headerText="email">
+                        <h:outputText value="#{user.email}"/>
+                    </p:column>
+                    <p:column headerText="Törlés">
+                        <p:commandButton icon="ui-icon-trash"
+                                         title="Delete"
+                                         actionListener="#{userService.deleteUser(user)}"
+                                         ajax="false"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+            <h:form id="carTableForm">
+                <p:dataTable var="car" value="#{carService.cars}">
+                    <f:facet name="header">
+                        Autók
+                    </f:facet>
+                    <p:column headerText="ID">
+                        <h:outputText value="#{car.id}"/>
+                    </p:column>
+                    <p:column headerText="brand">
+                        <h:outputText value="#{car.brand}"/>
+                    </p:column>
+                    <p:column headerText="type">
+                        <h:outputText value="#{car.type}"/>
+                    </p:column>
+                    <p:column headerText="engineCapacity">
+                        <h:outputText value="#{car.engineCapacity}"/>
+                    </p:column>
+                    <p:column headerText="yearOfBuild">
+                        <h:outputText value="#{car.yearOfBuild.toString}"/>
+                    </p:column>
+                    <p:column headerText="Törlés">
+                        <p:commandButton icon="ui-icon-trash"
+                                         title="Delete"
+                                         actionListener="#{carService.deleteCar(car)}"
+                                         ajax="false"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+
+        </p:panel>
+    </p:panel>
+
+
+</h:body>
+
+
+<!--Todo:-->
+<!-- - kell tudni felvinni embereket-->
+<!-- - kell tudni törölni embereket-->
+<!-- - kell tudni felvinni autókat-->
+<!-- - kell tudni törölni autókat-->
+<!-- - kell tudni törölni kapcsolatokat-->
+</html>

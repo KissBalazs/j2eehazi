@@ -3,6 +3,7 @@ import hu.forest.jeehazi.model.BaseEntity;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 /**
@@ -26,6 +27,13 @@ public class BaseDao {
         } else {
             return entityManager.merge(entity);
         }
+    }
+
+    public void delete(BaseEntity selectedEntity) {
+        // kapok egy csonkot
+        selectedEntity = entityManager.getReference(selectedEntity.getClass(), selectedEntity.getId());
+
+        entityManager.remove(selectedEntity);
     }
 
 }
