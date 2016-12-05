@@ -23,12 +23,13 @@ public class CarService {
     @Inject
     private BaseDao baseDao;
 
-    public void addCar(String brand, String type, String color, int engineCapacity, Date yearOfBuild){
+    public void addCar(String brand, String type, String color, int engineCapacity, int price, Date yearOfBuild){
         Car carToSave = new Car();
         carToSave.setBrand(brand);
         carToSave.setType(type);
         carToSave.setColor(color);
         carToSave.setEngineCapacity(engineCapacity);
+        carToSave.setPrice(price);
         carToSave.setYearOfBuild(yearOfBuild);
         carToSave.setRents(new ArrayList<Rent>());
         baseDao.save(carToSave);    }

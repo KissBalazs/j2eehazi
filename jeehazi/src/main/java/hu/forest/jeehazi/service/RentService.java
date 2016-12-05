@@ -22,9 +22,9 @@ public class RentService {
     @Inject
     private BaseDao baseDao;
 
-    public void addRent(User user, Car car, int price, Date dateOfRent){
+    public void addRent(User user, Car car, int priceMultiplier, Date dateOfRent ){
         Rent rent = new Rent();
-        rent.setPrice(price);
+        rent.setPrice(car.getPrice() * priceMultiplier);
         if(dateOfRent==null){
             dateOfRent = new Date();
         }

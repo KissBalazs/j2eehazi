@@ -12,6 +12,32 @@
 
 <h:body>
     <p:button value="Vissza a menübe" icon="ui-icon-star" outcome="index.xhtml"/>
+    <p:panel id="carTablePanel">
+        <p:dataTable var="car" value="#{carService.cars}">
+            <f:facet name="header">
+                Autók
+            </f:facet>
+            <p:column headerText="ID">
+                <h:outputText value="#{car.id}"/>
+            </p:column>
+            <p:column headerText="brand">
+                <h:outputText value="#{car.brand}"/>
+            </p:column>
+            <p:column headerText="type">
+                <h:outputText value="#{car.type}"/>
+            </p:column>
+            <p:column headerText="engineCapacity">
+                <h:outputText value="#{car.engineCapacity}"/>
+            </p:column>
+            <p:column headerText="price">
+                <h:outputText value="#{car.price}"/>
+            </p:column>
+            <p:column headerText="yearOfBuild">
+                <h:outputText value="#{car.yearOfBuild}"/>
+            </p:column>
+        </p:dataTable>
+    </p:panel>
+
     <p:panel id="addrent" header="Új kölcsönzés">
         <h:form>
 
@@ -25,18 +51,18 @@
             </p:selectOneMenu>
 
             <p:outputLabel for="selectCar" value="Autó:"/>
-            <p:selectOneMenu id="selectCar" binding="#{car}" converter="#{carConverter}">
+            <p:selectOneMenu id="selectCar" binding="#{carbind}" converter="#{carConverter}">
                 <f:selectItem itemLabel="Válassz!" value="#{null}"/>
                 <f:selectItems value="#{carService.cars}"
                                var="carVar"
                                itemLabel="#{carVar.getPresentationName()}"
                                itemValue="#{carVar}"/>
             </p:selectOneMenu>
-            <h:outputLabel for="priceField" value="Ár:"/>
-            <h:inputText id="priceField" binding="#{price}"/>
+            <h:outputLabel for="priceMultiplierField" value="Ár szorzó:"/>
+            <h:inputText id="priceMultiplierField" binding="#{priceMultiplier}"/>
             <p:commandButton
                     value="Mentés"
-                    actionListener="#{rentService.addRent(user.value,car.value,price.value,null)}"
+                    actionListener="#{rentService.addRent(user.value,carbind.value,priceMultiplier.value,null)}"
                     update="@all"
             />
         </h:form>

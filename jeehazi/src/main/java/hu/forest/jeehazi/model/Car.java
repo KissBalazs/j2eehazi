@@ -38,6 +38,9 @@ public class Car extends BaseEntity {
     private String color;
 
     @Basic
+    private int price;
+
+    @Basic
     private int engineCapacity;
 
     @Basic

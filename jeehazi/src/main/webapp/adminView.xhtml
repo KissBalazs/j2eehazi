@@ -44,9 +44,11 @@
                         <p:calendar id="dateOfCreate" binding="#{dateOfCreate}" showOn="button" />
                         <h:outputLabel for="engineCapacityField" value="Motor térfogat:"/>
                         <h:inputText id="engineCapacityField" binding="#{engineCapacity}"/>
+                        <h:outputLabel for="priceField" value="Ár:"/>
+                        <h:inputText id="priceField" binding="#{price}"/>
                         <p:commandButton
                                 value="Mentés"
-                                actionListener="#{carService.addCar(brand.value, type.value, color.value, engineCapacity.value, dateOfCreate.value)}"
+                                actionListener="#{carService.addCar(brand.value, type.value, color.value, engineCapacity.value, price.value, dateOfCreate.value)}"
                                 update="@all"
                         />
                     </h:form>
@@ -71,11 +73,11 @@
                                            itemLabel="#{carVar.getPresentationName()}"
                                            itemValue="#{carVar}"/>
                         </p:selectOneMenu>
-                        <h:outputLabel for="priceField" value="Ár:"/>
-                        <h:inputText id="priceField" binding="#{price}"/>
+                        <h:outputLabel for="priceMultiplyField" value="Ár szorzó:"/>
+                        <h:inputText id="priceMultiplyField" binding="#{priceMultiplier}"/>
                         <p:commandButton
                                 value="Mentés"
-                                actionListener="#{rentService.addRent(user.value,car.value,price.value,null)}"
+                                actionListener="#{rentService.addRent(user.value,car.value,priceMultiplier.value,null)}"
                                 update="@all"
                         />
                     </h:form>
@@ -120,6 +122,9 @@
                     </p:column>
                     <p:column headerText="engineCapacity">
                         <h:outputText value="#{car.engineCapacity}"/>
+                    </p:column>
+                    <p:column headerText="price">
+                        <h:outputText value="#{car.price}"/>
                     </p:column>
                     <p:column headerText="yearOfBuild">
                         <h:outputText value="#{car.yearOfBuild}"/>
