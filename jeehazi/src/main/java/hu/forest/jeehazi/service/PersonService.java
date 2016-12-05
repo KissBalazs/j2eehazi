@@ -29,6 +29,12 @@ public class PersonService {
         baseDao.save(person);
     }
 
+    public void addPerson(String name) {
+        Person person = new Person();
+        person.setName(name);
+        baseDao.save(person);
+    }
+
     public List<Person> getPersons() {
         return baseDao.query(Person.class, Person.NQ_FIND_ALL_PERSONS);
     }
