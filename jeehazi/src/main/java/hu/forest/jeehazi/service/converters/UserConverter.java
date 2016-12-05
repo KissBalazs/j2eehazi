@@ -26,6 +26,9 @@ public class UserConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
+        if(s==null || s.isEmpty()){
+            return null;
+        }
         Optional<User> optionalUser = userService.getUsers()
                 .stream()
                 .filter(currentUser -> currentUser.getName().equals(s))
@@ -40,6 +43,9 @@ public class UserConverter implements Converter {
 
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
+        if(o==null){
+            return null;
+        }
         return ((User) o).getName();
     }
 }

@@ -20,11 +20,12 @@ public class Rent extends BaseEntity {
 
     public static final String NQ_FIND_ALL_RENTS = "rent.findAll";
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="car_id")
     private Car car;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+
     @JoinColumn(name = "user_id")
     private User user;
 

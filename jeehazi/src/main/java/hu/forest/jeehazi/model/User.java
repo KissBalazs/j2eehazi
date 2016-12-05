@@ -1,9 +1,6 @@
 package hu.forest.jeehazi.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,7 +15,8 @@ import java.util.List;
 )
 @Data
 @Entity
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = false, exclude = {"rents"})
+@ToString(exclude = {"rents"})
 public class User extends BaseEntity {
 
     public static final String NQ_FIND_ALL_USERS = "user.findAll";

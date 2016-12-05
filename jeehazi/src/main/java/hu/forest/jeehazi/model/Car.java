@@ -2,6 +2,7 @@ package hu.forest.jeehazi.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,7 +17,8 @@ import java.util.List;
         @NamedQuery(name = Car.FIND_ALL_CARS, query = "select c from Car c")
 )
 @Entity
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = false, exclude = "rents")
+@ToString(exclude = "rents")
 @Data
 public class Car extends BaseEntity {
 

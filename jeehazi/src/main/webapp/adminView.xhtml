@@ -56,6 +56,7 @@
                     <p:panelGrid columnClasses="2">
                         <p:outputLabel for="selectUser" value="Felhasználó:"/>
                         <p:selectOneMenu id="selectUser" binding="#{user}" converter="#{userConverter}">
+                            <f:selectItem itemLabel="Válassz!" value="#{null}"/>
                             <f:selectItems value="#{userService.users}"
                                            var="userVar"
                                            itemLabel="#{userVar.name}"
@@ -64,6 +65,7 @@
 
                         <p:outputLabel for="selectCar" value="Autó:"/>
                         <p:selectOneMenu id="selectCar" binding="#{car}" converter="#{carConverter}">
+                            <f:selectItem itemLabel="Válassz!" value="#{null}"/>
                             <f:selectItems value="#{carService.cars}"
                                            var="carVar"
                                            itemLabel="#{carVar.getPresentationName()}"

@@ -25,6 +25,9 @@ public class CarConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
+        if(s==null || s.isEmpty()){
+            return null;
+        }
         Optional<Car> optinalCar = carService.getCars()
                 .stream()
                 .filter(currentCar -> currentCar.getPresentationName().equals(s))
@@ -39,6 +42,9 @@ public class CarConverter implements Converter {
 
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
-        return (((Car) o).getBrand() + ":" + ((Car) o).getType());
+        if(o==null){
+            return null;
+        }
+        return (((Car) o).getPresentationName());
     }
 }
