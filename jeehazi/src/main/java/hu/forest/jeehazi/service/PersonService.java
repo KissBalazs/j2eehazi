@@ -5,6 +5,8 @@ import hu.forest.jeehazi.model.Person;
 
 import java.util.Date;
 import java.util.List;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -13,6 +15,7 @@ import javax.inject.Named;
  * @author Kiss Balázs <balazs.kiss@webvalto.hu>
  */
 
+@ApplicationScoped
 @Named("personService")
 public class PersonService {
 
