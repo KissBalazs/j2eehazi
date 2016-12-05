@@ -26,7 +26,7 @@ public class UserService {
     public void addUser(String name, String password, String email){
         User userToSave = new User();
         userToSave.setName(name);
-        userToSave.setPasswordHash(password);// todo: password...
+        userToSave.setPasswordHash(password);
         userToSave.setEmail(email);
         userToSave.setRents(new ArrayList<Rent>());
         baseDao.save(userToSave);

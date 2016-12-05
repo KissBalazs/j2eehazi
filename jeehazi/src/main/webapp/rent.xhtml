@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+<h:head>
+
+</h:head>
+
+<h:body>
+    <p:button value="Vissza a menübe" icon="ui-icon-star" outcome="index.xhtml"/>
+    <p:panel id="addrent" header="Új kölcsönzés">
+        <h:form>
+
+            <p:outputLabel for="selectUser" value="Felhasználó: HELYETT A CURRENT USER TODO "/>
+            <p:selectOneMenu id="selectUser" binding="#{user}" converter="#{userConverter}">
+                <f:selectItem itemLabel="Válassz!" value="#{null}"/>
+                <f:selectItems value="#{userService.users}"
+                               var="userVar"
+                               itemLabel="#{userVar.name}"
+                               itemValue="#{userVar}"/>
+            </p:selectOneMenu>
+
+            <p:outputLabel for="selectCar" value="Autó:"/>
+            <p:selectOneMenu id="selectCar" binding="#{car}" converter="#{carConverter}">
+                <f:selectItem itemLabel="Válassz!" value="#{null}"/>
+                <f:selectItems value="#{carService.cars}"
+                               var="carVar"
+                               itemLabel="#{carVar.getPresentationName()}"
+                               itemValue="#{carVar}"/>
+            </p:selectOneMenu>
+            <h:outputLabel for="priceField" value="Ár:"/>
+            <h:inputText id="priceField" binding="#{price}"/>
+            <p:commandButton
+                    value="Mentés"
+                    actionListener="#{rentService.addRent(user.value,car.value,price.value,null)}"
+                    update="@all"
+            />
+        </h:form>
+
+    </p:panel>
+    <p:panel id="rentsPanel" header="Kölcsönzéseim:">
+        <h:form>
+            <p:dataTable var="rent" value="#{rentService.rents}">
+                <f:facet name="header">
+                    Kölcsönzések
+                </f:facet>
+                <p:column headerText="ID"
+                          filterBy="#{rent.id}"
+                          filterMatchMode="contains">
+                    <h:outputText value="#{rent.id}"/>
+                </p:column>
+                <p:column headerText="carBrandID"
+                          filterBy="#{rent.car.brand}"
+                          filterMatchMode="contains">
+                    <h:outputText value="#{rent.car.brand}"/>
+                </p:column>
+                <p:column headerText="carType">
+                    <h:outputText value="#{rent.car.type}"/>
+                </p:column>
+                <p:column headerText="userType">
+                    <h:outputText value="#{rent.user.name}"/>
+                </p:column>
+                <p:column headerText="price"
+                          filterBy="#{rent.id}"
+                          filterMatchMode="contains">
+                    <h:outputText value="#{rent.price}"/>
+                </p:column>
+                <p:column headerText="date">
+                    <h:outputText value="#{rent.dateOfRent}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </p:panel>
+</h:body>
+
+</html>

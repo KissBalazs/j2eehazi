@@ -34,13 +34,10 @@ public class User extends BaseEntity {
     @Basic
     private String email;
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "Rent",
-//            joinColumns = @JoinColumn(name = "id", referencedColumnName = "id"),
-//            inverseJoinColumns = @JoinColumn(name = "id", referencedColumnName = "id"))
-//    private List<Car> cars;
-
     @OneToMany(mappedBy = "user")
     private List<Rent> rents;
+
+    // todo:
+//    -request filter;
+//    - session scope user;
 }

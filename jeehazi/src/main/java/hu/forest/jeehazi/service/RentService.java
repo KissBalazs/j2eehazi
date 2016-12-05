@@ -25,6 +25,9 @@ public class RentService {
     public void addRent(User user, Car car, int price, Date dateOfRent){
         Rent rent = new Rent();
         rent.setPrice(price);
+        if(dateOfRent==null){
+            dateOfRent = new Date();
+        }
         rent.setDateOfRent(dateOfRent);
         car.getRents().add(rent);
         rent.setCar(car);
@@ -32,7 +35,6 @@ public class RentService {
         rent.setUser(user);
 
         baseDao.save(rent);
-//        baseDao.saveRent(rent, user, car);
     }
 
     public void deleteRent(Rent rentToDelete){
