@@ -5,6 +5,7 @@ import hu.forest.jeehazi.model.Car;
 import hu.forest.jeehazi.model.Rent;
 import hu.forest.jeehazi.model.User;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -22,7 +23,7 @@ import java.util.List;
 @Named("userService")
 public class UserService {
 
-    @Inject
+    @EJB
     private BaseDao baseDao;
 
     public void addUser(String name, String password, String email){

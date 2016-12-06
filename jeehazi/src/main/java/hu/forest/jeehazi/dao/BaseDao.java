@@ -5,6 +5,7 @@ import hu.forest.jeehazi.model.Rent;
 import hu.forest.jeehazi.model.User;
 
 import java.util.List;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -16,6 +17,7 @@ import javax.persistence.PersistenceContext;
  */
 
 @Stateless
+@LocalBean
 public class BaseDao {
 
     @PersistenceContext

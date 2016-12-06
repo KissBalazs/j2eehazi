@@ -1,16 +1,15 @@
 package hu.forest.jeehazi.service;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import hu.forest.jeehazi.dao.BaseDao;
 import hu.forest.jeehazi.model.Car;
 import hu.forest.jeehazi.model.Rent;
-import hu.forest.jeehazi.model.User;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author Kiss Balázs <balazs.kiss@webvalto.hu>
@@ -20,10 +19,10 @@ import javax.inject.Named;
 @Named("carService")
 public class CarService {
 
-    @Inject
+    @EJB
     private BaseDao baseDao;
 
-    public void addCar(String brand, String type, String color, int engineCapacity, int price, Date yearOfBuild){
+    public void addCar(String brand, String type, String color, int engineCapacity, int price, Date yearOfBuild) {
         Car carToSave = new Car();
         carToSave.setBrand(brand);
         carToSave.setType(type);
@@ -32,13 +31,14 @@ public class CarService {
         carToSave.setPrice(price);
         carToSave.setYearOfBuild(yearOfBuild);
         carToSave.setRents(new ArrayList<Rent>());
-        baseDao.save(carToSave);    }
+        baseDao.save(carToSave);
+    }
 
-    public void deleteCar(Car carToDelete){
+    public void deleteCar(Car carToDelete) {
         baseDao.delete(carToDelete);
     }
 
-    public List<Car> getCars(){
+    public List<Car> getCars() {
         return baseDao.query(Car.class, Car.FIND_ALL_CARS);
     }
 }
