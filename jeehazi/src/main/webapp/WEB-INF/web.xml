@@ -3,36 +3,30 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
   http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 
-    <welcome-file-list> <!-- ha nincs url -->
-        <welcome-file>index.html</welcome-file>
+    <welcome-file-list> <!-- redirect üres url esetére-->
         <welcome-file>index.xhtml</welcome-file>
-        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-    <servlet>
+    <servlet> <!-- JFS inicializálás-->
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-    <servlet-mapping>
+    <servlet-mapping> <!-- Faces mapping -->
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
 
-    <!--<context-param> ha témát szeretnék-->
-        <!--<param-name>primefaces.THEME</param-name>-->
-        <!--<param-value>redmond</param-value>-->
-    <!--</context-param>-->
-    <context-param>
+    <context-param> <!-- az xhtml-ekben tudunk kommentelni, nem olvassa fel-->
         <param-name>facelets.SKIP_COMMENTS</param-name>
         <param-value>true</param-value>
     </context-param>
 
-    <context-param>
+    <context-param> <!-- külső font libary-->
         <param-name>primefaces.FONT_AWESOME</param-name>
         <param-value>true</param-value>
     </context-param>
 
-    <security-constraint>
+    <security-constraint> <!--security beálltások -->
         <web-resource-collection>
             <web-resource-name>Secure Application</web-resource-name>
             <url-pattern>/*</url-pattern>
@@ -40,18 +34,18 @@
             <http-method>POST</http-method>
         </web-resource-collection>
 
-        <auth-constraint>
+        <auth-constraint> <!-- itt is definiálni kell a role-okat -->
             <role-name>Users</role-name>
             <role-name>Admin</role-name>
         </auth-constraint>
     </security-constraint>
 
-    <login-config>
+    <login-config> <!-- basic login, file realm-on-->
         <auth-method>BASIC</auth-method>
         <realm-name>file</realm-name>
     </login-config>
 
-    <security-role>
+    <security-role> <!-- security role-s-->
         <role-name>Users</role-name>
     </security-role>
     <security-role>

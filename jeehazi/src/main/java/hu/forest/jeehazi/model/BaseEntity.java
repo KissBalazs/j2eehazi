@@ -1,5 +1,6 @@
 package hu.forest.jeehazi.model;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +15,9 @@ import java.util.UUID;
 /**
  * @author Kiss Balázs <balazs.kiss@webvalto.hu>
  */
+
+// @Data annotáció: automatikusan generálja a setter, és getter metódusokat.
+@Data
 @EqualsAndHashCode
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
@@ -22,17 +26,7 @@ public abstract class BaseEntity implements Serializable {
     @Column(name = "id")
     private String id;
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getId() {
-        return this.id;
-    }
-
     @Version
-    @Getter
-    @Setter
     private Long version;
 
     public BaseEntity() {

@@ -1,6 +1,6 @@
 git mvn archetype:generate -DgroupId=hu.forest -DartifactId=jeehazi -Dversion=0.1-SNAPSHOT -Dpackage=hu.forest.jeehazi -DarchetypeGroupId=org.codehaus.mojo.archetypes -DarchetypeArtifactId=webapp-javaee6 -DarchetypeVersion=1.5 -DinteractiveMode=false
 
-- telepítettem egy glassfisht- weblogic egyenlőre kuka
+- telepítettem egy glassfisht- weblogic egyenlőre kuka -> nem megy a weboldaluk már megint, meg kíváncsi vagyok a glassfishre
 
 - beans.xml fájl
 

@@ -16,6 +16,7 @@ import java.util.List;
  * @author Kiss Balázs <balazs.kiss@webvalto.hu>
  */
 
+// előre lkészített named query, a service-kből lehet rá hivatkozni.
 @NamedQueries(
         @NamedQuery(name = Car.FIND_ALL_CARS, query = "select c from Car c")
 )
@@ -23,8 +24,6 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false, exclude = "rents")
 @ToString(exclude = "rents")
 @Data
-@XmlAccessorType(XmlAccessType.PROPERTY)
-@XmlType(name = "asd")
 public class Car extends BaseEntity {
 
 

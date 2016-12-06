@@ -11,7 +11,7 @@
 </h:head>
 
 <h:body>
-    <p:panel rendered="#{request.isUserInRole('Admin')}">
+    <p:panel rendered="#{request.isUserInRole('Admin')}"> <!-- ezzel lehet letiltani a mezei user elől a funkciókat. -->
         <p:button value="Vissza a menübe" icon="ui-icon-star" outcome="index.xhtml"/>
 
         <p:panel id="addUser" header="User felvétele">

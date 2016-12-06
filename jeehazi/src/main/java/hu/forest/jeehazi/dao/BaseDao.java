@@ -11,6 +11,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 /**
  * @author Kiss Balázs <balazs.kiss@webvalto.hu>
+ *     Segítségével meghívjuk az EntityManager-t, és egyszerűbb műveleteket hajtunk végre az adatbázis és
+ *     az alkalmazás modellje között: mentés, törlés, keresés, stb.
  */
 
 @Stateless
@@ -33,7 +35,7 @@ public class BaseDao {
     }
 
     public void delete(BaseEntity selectedEntity) {
-        // kapok egy csonkot
+        // az entitást "rá kell kötni" az adatbázisban található párjára mielőtt töröljük..
         selectedEntity = entityManager.getReference(selectedEntity.getClass(), selectedEntity.getId());
 
         entityManager.remove(selectedEntity);
@@ -45,15 +47,5 @@ public class BaseDao {
                 .getResultList()
                 .get(0);
     }
-
-//    public void saveRent(Rent rentEntity, User userEntity, Car carEntity){ // todo: delete
-//        // todo: igen, saját dao kéne, de egy fgv...
-////        userEntity = entityManager.getReference(userEntity.getClass(), userEntity.getId());
-////        carEntity = entityManager.getReference(carEntity.getClass(), carEntity.getId());
-//        rentEntity.setUser(userEntity);
-//        rentEntity.setCar(carEntity);
-//
-//        save(rentEntity);
-//    }
 
 }

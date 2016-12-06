@@ -13,14 +13,15 @@ import java.util.List;
 
 /**
  * @author Kiss Balázs <balazs.kiss@webvalto.hu>
+ *     Egyszerű webservice. Tutorial:     https://blog.idrsolutions.com/2013/08/creating-and-deploying-a-java-web-service/
  */
 
 @WebService
 public class CarWebservice {
-//    @Inject
-//    private CarService carService; sajnos glassfish bug.         //http://stackoverflow.com/questions/8166187/can-i-and-how-lookup-cdi-managed-beans-using-javax-naming-contextlookup-in-ej
-
-    //https://blog.idrsolutions.com/2013/08/creating-and-deploying-a-java-web-service/
+    // Így kellene, de sajnos egy jelenleg nyitott glassfish bug miatt nem lehetséges.
+    //    @Inject
+    //    private CarService carService; sajnos glassfish bug.
+    // Workaround: http://stackoverflow.com/questions/8166187/can-i-and-how-lookup-cdi-managed-beans-using-javax-naming-contextlookup-in-ej
 
 
     @WebMethod
@@ -46,8 +47,8 @@ public class CarWebservice {
         List<String> returnList = new ArrayList<String>();
         for (Car car : carList) {
             returnList.add(car.toString());
-//                .stream().map(Car::toString).collect(Collectors.toList()); de a stream apival nem megy a webservice....
-        }
+        }// .stream().map(Car::toString).collect(Collectors.toList()); de a stream apival nem megy a webservice....
+
 
         return returnList;
     }

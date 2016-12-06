@@ -15,6 +15,7 @@ import java.util.Optional;
 
 /**
  * @author Kiss Balázs <balazs.kiss@webvalto.hu>
+ *     PrimeFaces Converter megoldás a legördülő listából való kiválasztás, és utána ebből Kölcsönzés objektum létrehozásához.
  */
 
 @Named("userConverter")
