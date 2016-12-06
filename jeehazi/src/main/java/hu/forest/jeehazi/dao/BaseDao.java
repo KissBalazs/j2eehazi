@@ -39,14 +39,21 @@ public class BaseDao {
         entityManager.remove(selectedEntity);
     }
 
-    public void saveRent(Rent rentEntity, User userEntity, Car carEntity){ // todo: delete
-        // todo: igen, saját dao kéne, de egy fgv...
-//        userEntity = entityManager.getReference(userEntity.getClass(), userEntity.getId());
-//        carEntity = entityManager.getReference(carEntity.getClass(), carEntity.getId());
-        rentEntity.setUser(userEntity);
-        rentEntity.setCar(carEntity);
-
-        save(rentEntity);
+    public User findUser(String name){
+        return (User) entityManager.createQuery("select u from User u where u.name =:name")
+                .setParameter("name", name)
+                .getResultList()
+                .get(0);
     }
+
+//    public void saveRent(Rent rentEntity, User userEntity, Car carEntity){ // todo: delete
+//        // todo: igen, saját dao kéne, de egy fgv...
+////        userEntity = entityManager.getReference(userEntity.getClass(), userEntity.getId());
+////        carEntity = entityManager.getReference(carEntity.getClass(), carEntity.getId());
+//        rentEntity.setUser(userEntity);
+//        rentEntity.setCar(carEntity);
+//
+//        save(rentEntity);
+//    }
 
 }

@@ -6,6 +6,8 @@ import hu.forest.jeehazi.model.Rent;
 import hu.forest.jeehazi.model.User;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -22,6 +24,9 @@ public class RentService {
     @Inject
     private BaseDao baseDao;
 
+    @Inject
+    private UserService userService;
+
     public void addRent(User user, Car car, int priceMultiplier, Date dateOfRent ){
         Rent rent = new Rent();
         rent.setPrice(car.getPrice() * priceMultiplier);
@@ -37,11 +42,24 @@ public class RentService {
         baseDao.save(rent);
     }
 
+    public void addRent(String username, Car car, int priceMultiplier, Date dateOfRent ){
+        User user = baseDao.findUser(username);
+        addRent(user, car, priceMultiplier, dateOfRent);
+    }
+
     public void deleteRent(Rent rentToDelete){
         baseDao.delete(rentToDelete);
     }
 
     public List<Rent> getRents(){
         return baseDao.query(Rent.class, Rent.NQ_FIND_ALL_RENTS);
+    }
+
+    public List<Rent> getMyRents(){
+        String loggedInUserName = userService.getLoggedInUserName();
+        return getRents()
+                .stream()
+                .filter(currentRent->currentRent.getUser().getName().equals(loggedInUserName))
+                .collect(Collectors.toList());
     }
 }

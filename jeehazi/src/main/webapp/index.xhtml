@@ -7,7 +7,6 @@
       xmlns:f="http://java.sun.com/jsf/core"
 >
 <h:head>
-    <h:outputStylesheet name="css/style.css" />
 
     <h:panelGrid id="mainGrid">
         <f:facet name="header">
@@ -32,32 +31,6 @@
                 </p:menu>
             </h:form>
 
-        </p:panel>
-
-        <p:panel id="carTablePanel">
-            <p:dataTable var="car" value="#{carService.cars}">
-                <f:facet name="header">
-                    Autók
-                </f:facet>
-                <p:column headerText="Azonosító">
-                    <h:outputText value="#{car.id}"/>
-                </p:column>
-                <p:column headerText="Gyártó">
-                    <h:outputText value="#{car.brand}"/>
-                </p:column>
-                <p:column headerText="Típus">
-                    <h:outputText value="#{car.type}"/>
-                </p:column>
-                <p:column headerText="Motor térfogat cm^3">
-                    <h:outputText value="#{car.engineCapacity}"/>
-                </p:column>
-                <p:column headerText="Kölcsönzés ára">
-                    <h:outputText value="#{car.price}"/>
-                </p:column>
-                <p:column headerText="Gyártás éve">
-                    <h:outputText value="#{car.yearOfBuild}"/>
-                </p:column>
-            </p:dataTable>
         </p:panel>
 
     </h:panelGrid>

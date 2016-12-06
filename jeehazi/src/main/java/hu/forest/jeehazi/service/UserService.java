@@ -6,6 +6,8 @@ import hu.forest.jeehazi.model.Rent;
 import hu.forest.jeehazi.model.User;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.sql.Date;
@@ -30,6 +32,10 @@ public class UserService {
         userToSave.setEmail(email);
         userToSave.setRents(new ArrayList<Rent>());
         baseDao.save(userToSave);
+    }
+
+    public String getLoggedInUserName(){
+        return FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
     }
 
     public void deleteUser(User userToDelete){
