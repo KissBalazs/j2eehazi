@@ -11,77 +11,77 @@
 </h:head>
 
 <h:body>
-
+    <p:panel rendered="#{request.isUserInRole('Admin')}">
         <p:button value="Vissza a menübe" icon="ui-icon-star" outcome="index.xhtml"/>
 
-                <p:panel id="addUser" header="User felvétele">
-                    <h:form>
+        <p:panel id="addUser" header="User felvétele">
+            <h:form>
 
-                        <h:outputLabel for="userName" value="Név:"/>
-                        <h:inputText id="userName" binding="#{userName}"/>
-                        <h:outputLabel for="password" value="Jelszó:"/>
-                        <h:inputSecret id="password" binding="#{password}"/>
-                        <h:outputLabel for="email" value="Email:"/>
-                        <h:inputText id="email" binding="#{email}"/>
-                        <p:commandButton
-                                value="Mentés"
-                                actionListener="#{userService.addUser(userName.value, password.value, email.value)}"
-                                update="@all"
-                        />
-                    </h:form>
+                <h:outputLabel for="userName" value="Név:"/>
+                <h:inputText id="userName" binding="#{userName}"/>
+                <h:outputLabel for="password" value="Jelszó:"/>
+                <h:inputSecret id="password" binding="#{password}"/>
+                <h:outputLabel for="email" value="Email:"/>
+                <h:inputText id="email" binding="#{email}"/>
+                <p:commandButton
+                        value="Mentés"
+                        actionListener="#{userService.addUser(userName.value, password.value, email.value)}"
+                        update="@all"
+                />
+            </h:form>
 
-                </p:panel>
-                <p:panel id="addCar" header="Autó felvétele">
-                    <h:form>
+        </p:panel>
+        <p:panel id="addCar" header="Autó felvétele">
+            <h:form>
 
-                        <h:outputLabel for="brandField" value="Gyártó:"/>
-                        <h:inputText id="brandField" binding="#{brand}"/>
-                        <h:outputLabel for="typeField" value="Típus:"/>
-                        <h:inputText id="typeField" binding="#{type}"/>
-                        <h:outputLabel for="colorField" value="szín:"/>
-                        <h:inputText id="colorField" binding="#{color}"/><br/>
-                        <h:outputLabel for="dateOfCreate" value="Gyártás éve:"/>
-                        <p:calendar id="dateOfCreate" binding="#{dateOfCreate}" showOn="button" />
-                        <h:outputLabel for="engineCapacityField" value="Motor térfogat:"/>
-                        <h:inputText id="engineCapacityField" binding="#{engineCapacity}"/>
-                        <h:outputLabel for="priceField" value="Ár:"/>
-                        <h:inputText id="priceField" binding="#{price}"/>
-                        <p:commandButton
-                                value="Mentés"
-                                actionListener="#{carService.addCar(brand.value, type.value, color.value, engineCapacity.value, price.value, dateOfCreate.value)}"
-                                update="@all"
-                        />
-                    </h:form>
+                <h:outputLabel for="brandField" value="Gyártó:"/>
+                <h:inputText id="brandField" binding="#{brand}"/>
+                <h:outputLabel for="typeField" value="Típus:"/>
+                <h:inputText id="typeField" binding="#{type}"/>
+                <h:outputLabel for="colorField" value="szín:"/>
+                <h:inputText id="colorField" binding="#{color}"/><br/>
+                <h:outputLabel for="dateOfCreate" value="Gyártás éve:"/>
+                <p:calendar id="dateOfCreate" binding="#{dateOfCreate}" showOn="button" />
+                <h:outputLabel for="engineCapacityField" value="Motor térfogat:"/>
+                <h:inputText id="engineCapacityField" binding="#{engineCapacity}"/>
+                <h:outputLabel for="priceField" value="Ár:"/>
+                <h:inputText id="priceField" binding="#{price}"/>
+                <p:commandButton
+                        value="Mentés"
+                        actionListener="#{carService.addCar(brand.value, type.value, color.value, engineCapacity.value, price.value, dateOfCreate.value)}"
+                        update="@all"
+                />
+            </h:form>
 
-                </p:panel>
-                <p:panel id="addrent" header="Új kölcsönzés">
-                    <h:form>
-                        <p:outputLabel for="selectUser" value="Felhasználó:"/>
-                        <p:selectOneMenu id="selectUser" binding="#{user}" converter="#{userConverter}">
-                            <f:selectItem itemLabel="Válassz!" value="#{null}"/>
-                            <f:selectItems value="#{userService.users}"
-                                           var="userVar"
-                                           itemLabel="#{userVar.name}"
-                                           itemValue="#{userVar}"/>
-                        </p:selectOneMenu>
+        </p:panel>
+        <p:panel id="addrent" header="Új kölcsönzés">
+            <h:form>
+                <p:outputLabel for="selectUser" value="Felhasználó:"/>
+                <p:selectOneMenu id="selectUser" binding="#{user}" converter="#{userConverter}">
+                    <f:selectItem itemLabel="Válassz!" value="#{null}"/>
+                    <f:selectItems value="#{userService.users}"
+                                   var="userVar"
+                                   itemLabel="#{userVar.name}"
+                                   itemValue="#{userVar}"/>
+                </p:selectOneMenu>
 
-                        <p:outputLabel for="selectCar" value="Autó:"/>
-                        <p:selectOneMenu id="selectCar" binding="#{car}" converter="#{carConverter}">
-                            <f:selectItem itemLabel="Válassz!" value="#{null}"/>
-                            <f:selectItems value="#{carService.cars}"
-                                           var="carVar"
-                                           itemLabel="#{carVar.getPresentationName()}"
-                                           itemValue="#{carVar}"/>
-                        </p:selectOneMenu>
-                        <h:outputLabel for="priceMultiplyField" value="Ár szorzó:"/>
-                        <h:inputText id="priceMultiplyField" binding="#{priceMultiplier}"/>
-                        <p:commandButton
-                                value="Mentés"
-                                actionListener="#{rentService.addRent(user.value,car.value,priceMultiplier.value,null)}"
-                                update="@all"
-                        />
-                    </h:form>
-                </p:panel>
+                <p:outputLabel for="selectCar" value="Autó:"/>
+                <p:selectOneMenu id="selectCar" binding="#{car}" converter="#{carConverter}">
+                    <f:selectItem itemLabel="Válassz!" value="#{null}"/>
+                    <f:selectItems value="#{carService.cars}"
+                                   var="carVar"
+                                   itemLabel="#{carVar.getPresentationName()}"
+                                   itemValue="#{carVar}"/>
+                </p:selectOneMenu>
+                <h:outputLabel for="priceMultiplyField" value="Ár szorzó:"/>
+                <h:inputText id="priceMultiplyField" binding="#{priceMultiplier}"/>
+                <p:commandButton
+                        value="Mentés"
+                        actionListener="#{rentService.addRent(user.value,car.value,priceMultiplier.value,null)}"
+                        update="@all"
+                />
+            </h:form>
+        </p:panel>
 
         <p:panel id="entityListingPanel" header="Adatbázis:">
             <h:form id="userTableForm">
@@ -170,6 +170,9 @@
                 </p:dataTable>
             </h:form>
         </p:panel>
+
+    </p:panel>
+
 
 
 </h:body>

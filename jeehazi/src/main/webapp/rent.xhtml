@@ -11,6 +11,7 @@
 </h:head>
 
 <h:body>
+
     <p:button value="Vissza a menübe" icon="ui-icon-star" outcome="index.xhtml"/>
     <p:panel id="carTablePanel">
         <p:dataTable var="car" value="#{carService.cars}">
@@ -38,17 +39,11 @@
         </p:dataTable>
     </p:panel>
 
-    <p:panel id="addrent" header="Új kölcsönzés">
+    <p:panel id="addrentPanel" header="Új kölcsönzés">
         <h:form>
 
-            <p:outputLabel for="selectUser" value="Felhasználó: HELYETT A CURRENT USER TODO "/>
-            <p:selectOneMenu id="selectUser" binding="#{user}" converter="#{userConverter}">
-                <f:selectItem itemLabel="Válassz!" value="#{null}"/>
-                <f:selectItems value="#{userService.users}"
-                               var="userVar"
-                               itemLabel="#{userVar.name}"
-                               itemValue="#{userVar}"/>
-            </p:selectOneMenu>
+
+            <p:outputLabel id="userNameLabel" value="Felhasználó: #{request.remoteUser} "/>
 
             <p:outputLabel for="selectCar" value="Autó:"/>
             <p:selectOneMenu id="selectCar" binding="#{carbind}" converter="#{carConverter}">
@@ -62,7 +57,7 @@
             <h:inputText id="priceMultiplierField" binding="#{priceMultiplier}"/>
             <p:commandButton
                     value="Mentés"
-                    actionListener="#{rentService.addRent(user.value,carbind.value,priceMultiplier.value,null)}"
+                    actionListener="#{rentService.addRent(request.remoteUser,carbind.value,priceMultiplier.value,null)}"
                     update="@all"
             />
         </h:form>

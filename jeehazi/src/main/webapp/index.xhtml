@@ -7,25 +7,60 @@
       xmlns:f="http://java.sun.com/jsf/core"
 >
 <h:head>
+    <h:outputStylesheet name="css/style.css" />
+
     <h:panelGrid id="mainGrid">
         <f:facet name="header">
             <h1>JEE házifeladat</h1>
             <h1>Autókölcsönző webalkalmazás</h1>
             <h3>Kiss Balázs - DCZUKT</h3>
         </f:facet>
-    <p:panel id="containerPanel" >
-        <p:menu style="width: 95%;">
-            <p:submenu label="Menü">
-                <p:menuitem value="Kölcsönzés" url="http://localhost:8080/jeehazi-0.1-SNAPSHOT/rent.xhtml" icon="ui-icon-home"/>
-                <p:menuitem value="Adminisztrálás" url="http://localhost:8080/jeehazi-0.1-SNAPSHOT/adminView.xhtml" icon="ui-icon-home"/>
-                <p:menuitem value="Kijelentkezés" url="valami" icon="ui-icon-home"/>
-                <!--Todo: normális linkek! -->
-            </p:submenu>
-        </p:menu>
-    </p:panel>
+        <p:panel id="containerPanel">
+            <h:form>
+                <p:menu style="width: 100%;">
+                    <p:submenu label="Menü - #{request.remoteUser}">
+                        <p:menuitem value="Kölcsönzés" url="/rent.xhtml" icon="fa fa-car"
+                                    rendered="#{request.isUserInRole('Users')}"
+                        />
+                        <p:menuitem value="Admin felület"
+                                    url="/adminView.xhtml"
+                                    rendered="#{request.isUserInRole('Admin')}"
+                                    icon="fa fa-plug"/>
+                        <p:menuitem value="Kijelentkezés" action="#{logoutService.logout()}" icon="ui-icon-closethick"/>
+
+                    </p:submenu>
+                </p:menu>
+            </h:form>
+
+        </p:panel>
+
+        <p:panel id="carTablePanel">
+            <p:dataTable var="car" value="#{carService.cars}">
+                <f:facet name="header">
+                    Autók
+                </f:facet>
+                <p:column headerText="Azonosító">
+                    <h:outputText value="#{car.id}"/>
+                </p:column>
+                <p:column headerText="Gyártó">
+                    <h:outputText value="#{car.brand}"/>
+                </p:column>
+                <p:column headerText="Típus">
+                    <h:outputText value="#{car.type}"/>
+                </p:column>
+                <p:column headerText="Motor térfogat cm^3">
+                    <h:outputText value="#{car.engineCapacity}"/>
+                </p:column>
+                <p:column headerText="Kölcsönzés ára">
+                    <h:outputText value="#{car.price}"/>
+                </p:column>
+                <p:column headerText="Gyártás éve">
+                    <h:outputText value="#{car.yearOfBuild}"/>
+                </p:column>
+            </p:dataTable>
+        </p:panel>
 
     </h:panelGrid>
-
 
 
 </h:head>
