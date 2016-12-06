@@ -72,7 +72,7 @@
             <h:inputText id="priceMultiplierField" binding="#{priceMultiplier}"/>
             <p:commandButton
                     value="Mentés"
-                    actionListener="#{rentService.addRent(request.remoteUser.toString(),carbind.value,priceMultiplier.value,null)}"
+                    actionListener="#{rentService.addRent(carbind.value,priceMultiplier.value,null)}"
                     update="@all"
             />
         </h:form>

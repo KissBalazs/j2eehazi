@@ -10,6 +10,9 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.faces.component.FacesComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.view.facelets.FaceletContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -42,7 +45,8 @@ public class RentService {
         baseDao.save(rent);
     }
 
-    public void addRent(String username, Car car, int priceMultiplier, Date dateOfRent ){
+    public void addRent(Car car, int priceMultiplier, Date dateOfRent ){
+        String username = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser().toString();
         User user = baseDao.findUser(username);
         addRent(user, car, priceMultiplier, dateOfRent);
     }
