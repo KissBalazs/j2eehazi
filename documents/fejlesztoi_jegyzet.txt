@@ -1,4 +1,4 @@
-mvn archetype:generate -DgroupId=hu.forest -DartifactId=jeehazi -Dversion=0.1-SNAPSHOT -Dpackage=hu.forest.jeehazi -DarchetypeGroupId=org.codehaus.mojo.archetypes -DarchetypeArtifactId=webapp-javaee6 -DarchetypeVersion=1.5 -DinteractiveMode=false
+git mvn archetype:generate -DgroupId=hu.forest -DartifactId=jeehazi -Dversion=0.1-SNAPSHOT -Dpackage=hu.forest.jeehazi -DarchetypeGroupId=org.codehaus.mojo.archetypes -DarchetypeArtifactId=webapp-javaee6 -DarchetypeVersion=1.5 -DinteractiveMode=false
 
 - telepítettem egy glassfisht- weblogic egyenlőre kuka
 
@@ -67,6 +67,8 @@ http://docs.oracle.com/javaee/6/tutorial/doc/bnbxj.html
 
 http://blog.eisele.net/2013/01/jdbc-realm-glassfish312-primefaces342.html
 innnen folyt.
-
+webservice implementálva
+soap ui eléri
+intelli j idea plugin
 
 

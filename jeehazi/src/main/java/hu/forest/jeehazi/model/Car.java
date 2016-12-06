@@ -5,6 +5,9 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +23,10 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false, exclude = "rents")
 @ToString(exclude = "rents")
 @Data
+@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlType(name = "asd")
 public class Car extends BaseEntity {
+
 
     public Car() {
         this.rents = new ArrayList<Rent>();

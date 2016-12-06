@@ -19,8 +19,6 @@ import java.util.UUID;
 public abstract class BaseEntity implements Serializable {
 
     @Id
-//    @Getter
-//    @Setter
     @Column(name = "id")
     private String id;
 

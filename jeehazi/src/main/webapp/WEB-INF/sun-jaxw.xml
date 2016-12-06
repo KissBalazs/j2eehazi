@@ -2,5 +2,5 @@
     <endpoint
             name='adminuser'
             implementation='hu.forest.jeehazi.service.CarWebservice'
-            url-pattern='/*'/>
+            url-pattern='/CarWebserviceService'/>
 </endpoints>
